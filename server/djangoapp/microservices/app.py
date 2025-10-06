@@ -1,6 +1,14 @@
 from flask import Flask
 from nltk.sentiment import SentimentIntensityAnalyzer
+import nltk
 import json
+
+# Download required NLTK data
+try:
+    nltk.download('vader_lexicon', quiet=True)
+except:
+    pass
+
 app = Flask("Sentiment Analyzer")
 
 sia = SentimentIntensityAnalyzer()
@@ -32,4 +40,4 @@ def analyze_sentiment(input_txt):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
